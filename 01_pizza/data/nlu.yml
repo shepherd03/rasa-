@@ -1,0 +1,80 @@
+version: "3.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - who are you
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: order_pizza
+  examples: |
+    - i'd like to buy a pizza
+    - i want a pizza
+    - can i order a pizza
+    - i want to buy a pizza
+    - i want to order a pizza
+    - a pizza,please
+    - give me a pizza,please
+    - i need a pizza
+    - emm,give me a [veggie](pizza_flavor) pizza
+- intent: inform_size
+  examples: |
+    - [small](pizza_size)
+    - [medium](pizza_size)
+    - [large](pizza_size)
+    - [extra-large](pizza_size)
+    - [extra large](pizza_size)
+    - [s](pizza_size),please
+    - [m](pizza_size),please
+    - [l](pizza_size),please
+    - [xl](pizza_size),please
+    - [large](pizza_size)
+- intent: inform_flavor
+  examples: |
+    - [mozzarella](pizza_flavor)
+    - [fungi](pizza_flavor)
+    - [veggie](pizza_flavor)
+    - [pepperoni](pizza_flavor)
+    - [hawaii](pizza_flavor)
+    - [vegetable](pizza_flavor)
+    - [tomato](pizza_flavor)
+    - [tomato](pizza_flavor)

@@ -1,0 +1,132 @@
+version: "3.0"
+
+stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: order pizza with size and flavor
+    steps:
+      - intent: greet
+        user: hi
+      - action: utter_greet
+      - intent: order_pizza
+        user: I want to order a pizza.
+      - action: utter_ask_size
+      - intent: inform_size
+        user: I want a [large](pizza_size) pizza.
+      - action: utter_ask_flavor
+      - intent: inform_flavor
+        user: And I want [mozzarella](pizza_flavor) flavor.
+      - action: action_order_pizza
+      - intent: affirm
+        user: Yes, that's right.
+      - action: utter_order_confirmed
+
+#  - story: order pizza with only size
+#    steps:
+#      - intent: greet
+#        user: hello
+#      - action: utter_greet
+#      - intent: order_pizza
+#        user: I'd like to buy a pizza.
+#      - action: utter_ask_size
+#      - intent: inform_size
+#        user: Make it [medium](pizza_size).
+#      - action: utter_ask_flavor
+#      - action: utter_order_confirmed
+#
+#  - story: order pizza with only flavor
+#    steps:
+#      - intent: greet
+#        user: hi
+#      - action: utter_greet
+#      - intent: order_pizza
+#        user: I want a pizza.
+#      - action: utter_ask_size
+#      - action: utter_ask_flavor
+#      - intent: inform_flavor
+#        user: I'll take [hawaii](pizza_flavor).
+#      - action: action_order_pizza
+#      - action: utter_order_confirmed
+
+  - story: handle invalid size
+    steps:
+      - intent: inform_size
+        user: I want an [extra-extra large](pizza_size) pizza.
+      - action: action_order_pizza
+
+  - story: handle invalid flavor
+    steps:
+      - intent: inform_flavor
+        user: I want a [tomato](pizza_flavor) pizza.
+      - action: action_order_pizza
+
+  - story: interactive_story_1
+    steps:
+    - intent: order_pizza
+    - action: utter_ask_size
+    - intent: inform_size
+      entities:
+      - pizza_size: small
+    - slot_was_set:
+      - pizza_size: small
+    - action: action_order_pizza
+    - intent: inform_flavor
+      entities:
+      - pizza_flavor: vegetable
+    - action: action_order_pizza
+    - intent: inform_flavor
+      entities:
+      - pizza_flavor: fungi
+    - slot_was_set:
+      - pizza_flavor: fungi
+    - action: action_order_pizza
+
+- story: interactive_story_1
+  steps:
+  - intent: order_pizza
+  - action: utter_ask_size
+  - intent: inform_size
+    entities:
+    - pizza_size: large
+  - slot_was_set:
+    - pizza_size: large
+  - action: action_order_pizza
+  - intent: inform_flavor
+    entities:
+    - pizza_flavor: tomato
+  - slot_was_set:
+    - pizza_flavor: tomato
+  - action: action_order_pizza
+  - slot_was_set:
+    - pizza_flavor: null
+  - intent: order_pizza
+    entities:
+    - pizza_flavor: veggie
+  - slot_was_set:
+    - pizza_flavor: veggie
+  - action: action_order_pizza
